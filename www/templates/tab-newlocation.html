@@ -1,0 +1,33 @@
+<ion-view view-title="New Location">
+  <ion-content>
+     <label class="h4">
+          Name
+     </label>
+     <div class="card">
+          <label class="item item-input">
+            <input type="text" placeholder="Location Name" ng-model="location.name">
+          </label>
+     </div>
+     <label class="h4">
+          Co-ordinates
+     </label>
+     <div class="card">
+          <label class="item item-input">
+            <input type="text" placeholder="Longitude" ng-model="location.longitude">
+          </label>
+          <label class="item item-input">
+            <input type="text" placeholder="Latitude" ng-model="location.latitude">
+          </label>
+     </div>
+
+    <p>
+      <label class="assertive">
+        &nbsp;{{ errorLabel }}
+      </label>
+    </p>
+    <button class="button button-positive" ng-click="saveRecord()">
+      Save
+    </button>
+
+  </ion-content>
+</ion-view>

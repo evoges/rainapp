@@ -1,0 +1,20 @@
+<ion-view view-title="Edit History">
+  <ion-content>
+    <div class="list">
+
+       <a class="item item-icon-left" href="#" ng-repeat="(key, value) in history ">
+          <div ng-if="value.mtype == 'rain'">
+           {{ value.mtype }} {{ value.rain }}mm  
+          </div>
+          <div ng-if="value.mtype == 'mintemp'">
+           {{ value.mtype }} {{ value.mintemp }}&deg;  
+          </div>
+	  <table border="1"><tr>
+             <td width=50%><small>{{value.locationname }}</small></td><td align="right"><small>{{value.todate}}</small></td>
+          </tr></table>
+          <span class="badge badge-assertive" ng-click="removeItem('{{ value.mtype }}', {{ value.mid }}, '{{ key }}')">X</span>
+       </a>
+
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,59 @@
+<ion-view view-title="Minimum Temperature">
+  <ion-content class="padding">
+   <form name="mintempform">
+    <label class="item item-input item-select">
+      <div class="input-label">
+        Location
+      </div>
+      <select name="locationselect" ng-model="locsel" ng-change="setFromDate()">
+      <!--select name="locationselect" -->
+          <option ng-repeat="(key, value) in locations" value="{{value.id}}">
+            {{value.name}}</option>
+      </select>
+    </label>
+    <div class="card">
+       <label class="item-input-wrapper">
+         <span class="input-label">Min. Temp.</span>
+         <input type="text" ng-model="mintemp.millimeters" placeholder="[degrees Celcius]">
+       </label>
+       <label class="item-input-wrapper" ng-if="secondDate">
+         <span class="input-label">From date</span>
+	 <ionic-datepicker idate="fromDate" disablepreviousdates="false"  disablefuturedates="true" callback="fromDateCallback" title="titleTo">
+    	   <button class="button button-block button-positive"> {{ fromDate | date:'dd MMMM yyyy' }} </button>
+	 </ionic-datepicker>
+       </label>
+       <label class="item-input-wrapper">
+         <span class="input-label" ng-if="!secondDate">Date</span>
+         <span class="input-label" ng-if="secondDate">To date</span>
+	 <ionic-datepicker idate="toDate" disablepreviousdates="false"  disablefuturedates="true" callback="toDateCallback" title="titleFrom">
+    	   <button class="button button-block button-positive"> {{ toDate | date:'dd MMMM yyyy'}} </button>
+	 </ionic-datepicker>
+       </label>
+       <div class="text-right" ng-click="toggleSecondDate()">
+         <button class="button button-small button-clear button-positive" ng-if="!secondDate">
+           ... more days
+         </button>
+         <button class="button button-small button-clear button-positive" ng-if="secondDate">
+           ... single day
+         </button>
+       </div>
+    </div>
+
+    <div class="item item-input-inset">
+        <label class="item-input"> 
+          <input type="text" ng-model="mintemp.note" placeholder="Comment or note...">
+      	</label>
+    </div>
+    <p>
+      <label class="assertive">
+        &nbsp;{{ errorLabel }} 
+      </label>
+    </p>
+
+    <button class="button button-positive" ng-click="saveRecord()">
+      Save
+    </button>
+
+   </form>
+  </ion-content>
+</ion-view>

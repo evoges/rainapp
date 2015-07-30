@@ -1,0 +1,15 @@
+<ion-view view-title="Rainfall Graph">
+  <ion-content>
+    <select ng-model="chart.type">
+       <option selected value="bar">Bar</option>
+       <option value="line">Line</option>
+    </select>
+    <div id="rainchart">
+	{{ placeholder }}
+    </div>
+    <button class="button" ng-click="test()">
+      Test
+    </button>
+    
+  </ion-content>
+</ion-view>
