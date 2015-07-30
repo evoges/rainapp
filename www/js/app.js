@@ -48,24 +48,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.raingraph', {
+    url: '/rain/graph',
+    views: {
+      'tab-rain': {
+        templateUrl: 'templates/tab-raingraph.html',
+        controller: 'RainGraphCtrl'
+      }
+    }
+  })
+
+  .state('tab.mintemp', {
+      url: '/mintemp',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+        'tab-mintemp': {
+          templateUrl: 'templates/tab-mintemp.html',
+          controller: 'MintempCtrl'
         }
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
-      }
-    })
+   })
 
   .state('tab.account', {
     url: '/account',
@@ -75,9 +76,29 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         controller: 'AccountCtrl'
       }
     }
+  })
+
+  .state('tab.newlocation', {
+    url: '/account/newlocation',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-newlocation.html',
+        controller: 'NewlocationCtrl'
+      }
+    }
+  })
+
+  .state('tab.history', {
+    url: '/account/history',
+    views: {
+      'tab-account': {
+        templateUrl: 'templates/tab-history.html',
+        controller: 'HistoryCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/chats');
+  $urlRouterProvider.otherwise('/tab/rain');
 
 });

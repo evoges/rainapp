@@ -5,43 +5,58 @@
       <div class="input-label">
         Location
       </div>
-      <select>
+      <select name="locationselect" ng-model="locsel" ng-change="setFromDate()">
           <option ng-repeat="(key, value) in locations" value="{{value.id}}">
             {{value.name}}</option>
-          <option>&lt;New&gt;</option>
       </select>
     </label>
     <div class="card">
        <label class="item-input-wrapper">
          <span class="input-label">Rain</span>
-         <input type="text" placeholder="[millimeters]">
+         <input type="text" ng-model="rain.millimeters" placeholder="[millimeters]">
        </label>
-       <label class="item-input-wrapper">
-         <span class="input-label" ng-if="!secondDate">Date</span>
-         <span class="input-label" ng-if="secondDate">From date</span>
-	 <ionic-datepicker idate="fromDate" disablepreviousdates="false"  disablefuturedates="true" callback="datePickerCallback" title="titleFrom">
+       <label class="item-input-wrapper" ng-if="secondDate">
+         <span class="input-label">From date</span>
+	 <ionic-datepicker idate="fromDate" disablepreviousdates="false"  disablefuturedates="true" callback="fromDateCallback" title="titleTo">
     	   <button class="button button-block button-positive"> {{ fromDate | date:'dd MMMM yyyy' }} </button>
 	 </ionic-datepicker>
        </label>
-       <label class="item-input-wrapper" ng-if="secondDate">
-         <span class="input-label">To date</span>
-	 <ionic-datepicker idate="toDate" disablepreviousdates="false"  disablefuturedates="true" callback="datePickerCallback" title="titleTo">
-    	   <button class="button button-block button-positive"> {{ toDate | date:'dd MMMM yyyy' }} </button>
+       <label class="item-input-wrapper">
+         <span class="input-label" ng-if="!secondDate">Date</span>
+         <span class="input-label" ng-if="secondDate">To date</span>
+	 <ionic-datepicker idate="toDate" disablepreviousdates="false"  disablefuturedates="true" callback="toDateCallback" title="titleFrom">
+    	   <button class="button button-block button-positive"> {{ toDate | date:'dd MMMM yyyy'}} </button>
 	 </ionic-datepicker>
        </label>
        <div class="text-right" ng-click="toggleSecondDate()">
-         <button class="button button-small button-clear" ng-if="!secondDate">
+         <button class="button button-small button-clear button-positive" ng-if="!secondDate">
            ... more days
          </button>
-         <button class="button button-small button-clear" ng-if="secondDate">
+         <button class="button button-small button-clear button-positive" ng-if="secondDate">
            ... single day
          </button>
        </div>
     </div>
 
-    <button class="button button-positive">
+    <div class="item item-input">
+       <label class="item-input"> 
+          <input type="text" ng-model="rain.note" placeholder="Comment or note...">
+      </label>
+    </div>
+    <p>
+      <label class="assertive">
+        &nbsp;{{ errorLabel }} 
+      </label>
+    </p>
+
+    <button class="button button-positive" ng-click="saveRecord()">
       Save
     </button>
+
+    <button class="button" ng-click="goGraph()">
+      History
+    </button>
+
    </form>
   </ion-content>
 </ion-view>
